@@ -1,0 +1,22 @@
+version: '2'
+services:
+  webserver:
+    build:
+      context: ./
+      dockerfile: ./debug.dockerfile
+    depends_on:
+      - db
+    ports:
+      - "80:80"
+    volumes:
+      - ./app:/var/www/html
+    environment:
+      XDEBUG_CONFIG: remote_host=host.docker.internal
+    env_file:
+      - database.env
+  db:
+    image: postgres
+    env_file:
+      - database.env
+    ports:
+    - "5432:5432"
