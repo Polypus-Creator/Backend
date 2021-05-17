@@ -1,5 +1,5 @@
 <?php
-include_once('private/endpoints.php');
+require_once('private/secure_endpoint.php');
 include_once('private/util/files.php');
 include_once('private/util/header_parser.php');
 include_once('private/util/shell_parser.php');
