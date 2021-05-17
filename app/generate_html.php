@@ -16,7 +16,7 @@ $web_name = $_GET["WebName"];
 //add first element of HTML
 $html = parse_top_shell(structure_dir, $_GET);
 
-$html = $html . parse_header($_GET, header_dir, "Logo&ItemsNav_%.html");
+$html = $html . parse_header($_GET, header_dir, "Logo&ItemsNav.html");
 
 $html = $html . file_get_contents(structure_dir . "/BottomStructure.html");
 
