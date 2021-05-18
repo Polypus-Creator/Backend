@@ -1,15 +1,64 @@
-drop table users;
-
 create table users
 (
-    id          serial      not null,
-    username    varchar(32) not null unique,
-    password    varchar(60),
-    create_date timestamp default current_timestamp,
-    token       varchar(120),
+    id                serial not null,
+    username          text   not null unique,
+    password          text,
+    create_date       timestamp default current_timestamp,
+    token             text,
+    security_question text,
+    security_answer   text,
+    last_login        timestamp default current_timestamp,
 
     constraint table_name_pk
         primary key (id)
 );
+create or replace function update_last_login()
+    returns trigger as
+$$
+begin
+    if new.token != '' then
+        update users
+        set last_login = current_timestamp
+        where id = new.id;
+    end if;
+end ;
+$$ language 'plpgsql';
 
+create trigger login_trigger
+    after update
+        of users
+    on token
+execute procedure update_last_login();
 
+create table webs
+(
+    id             serial not null,
+    user_id        int    not null
+        constraint webs_users_id_fk
+            references users
+            on update cascade on delete cascade,
+    website_name   text,
+    description    text,
+    category       text,
+    primary_colour text,
+    font           text,
+    data           json
+);
+
+create table tickets
+(
+    id          serial
+        constraint tickets_pk
+            primary key,
+    user_id     int
+        constraint tickets_users_id_fk
+            references users
+            on update cascade on delete set null,
+    title       text,
+    description text,
+    resolved    bool default false,
+    urgent      bool default false
+);
+
+create index token_index
+    on users (token);
