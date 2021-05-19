@@ -12,22 +12,25 @@ create table users
     constraint table_name_pk
         primary key (id)
 );
+
 create or replace function update_last_login()
     returns trigger as
 $$
 begin
-    if new.token != '' then
+    if new.token is not null then
         update users
         set last_login = current_timestamp
         where id = new.id;
     end if;
+    return null;
 end ;
 $$ language 'plpgsql';
 
 create trigger login_trigger
     after update
-        of users
-    on token
+        of token
+    on users
+    for each row
 execute procedure update_last_login();
 
 create table webs
