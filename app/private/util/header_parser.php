@@ -1,13 +1,14 @@
 <?php
-function parse_header($data, $header_dir, $header_type): string
+function parse_header($element, $header_dir): string
 {
+    $element_name = $element["Elemento"];
     //separate the file into parts to iterate and repeat chunks
-    $parts = explode("<!--end-->", file_get_contents($header_dir . "/" . $header_type));
+    $parts = explode("<!--end-->", file_get_contents($header_dir . "/" . $element_name));
 
-    $result = str_replace("logo.png", $data["LogoUrl"], $parts[0]);
-    $result = str_replace("title", $data["WebName"], $result);
+    $result = str_replace("logo.png", $element["LogoUrl"], $parts[0]);
+    $result = str_replace("title", $element["WebName"], $result);
     $first = true;
-    foreach ($data["NavItems"] as $item) {
+    foreach ($element["NavItems"] as $item) {
         // check it's not an empty item
         if ($item[0] != "") {
             $item_text = str_replace("title", $item[0], $parts[1]);

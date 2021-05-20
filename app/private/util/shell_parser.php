@@ -1,7 +1,7 @@
 <?php
-function parse_top_shell($structure_dir, $json)
+function parse_top_shell($structure_dir, $name)
 {
     return str_replace("websiteTitle",
-        $json["WebName"],
+        $name,
         file_get_contents($structure_dir . "/TopStructure.html"));
 }
