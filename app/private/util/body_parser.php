@@ -10,6 +10,8 @@ function parse_body($element): string
             return parse_cta_middle($element);
         case "CallToActionLeft":
             return parse_cta_left($element);
+        case "Image Text":
+            return parse_image_text($element);
     }
     return "";
 }
@@ -25,9 +27,18 @@ function parse_cta_middle($element): string
         [$element["Title"], $element["Text"], $element["ButtonText"], "TODO", $element["ButtonUrl"], "#"],
         file_get_contents(body_dir . "/CallToActionMiddle.html"));
 }
+
 function parse_cta_left($element): string
 {
     return str_replace(["%title", "%content", "%buttonText", "#1"],
         [$element["Title"], $element["Text"], $element["ButtonText"], $element["ButtonUrl"]],
         file_get_contents(body_dir . "/CallToActionLeft.html"));
+}
+
+function parse_image_text($element): string
+{
+    $file = $element["Orientaton"] === "Left" ? "ImageAndTextLeft.html" : "ImageAndTextRight.html";
+    return str_replace(["%title", "%content", "%imageUrl"],
+        [$element["Title"], $element["Text"], $element["Image"]],
+        file_get_contents(body_dir . "/$file"));
 }
