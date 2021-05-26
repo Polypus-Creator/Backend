@@ -13,6 +13,8 @@ function parse_element($element): string
             return parse_cta($element);
         case "Image Text":
             return parse_image_text($element);
+        case "Footer": //todo check name
+            return parse_footer($element);
     }
     return "";
 }
@@ -41,4 +43,11 @@ function parse_image_text($element): string
     return str_replace(["%title", "%content", "%imageUrl"],
         [$element["Title"], $element["Text"], $element["Image"]],
         file_get_contents(body_dir . $file));
+}
+
+function parse_footer($element): string
+{
+    return str_replace("%footerText",
+        $element["Text"],
+        file_get_contents(footer_dir . "SimpleFooter.html"));
 }
