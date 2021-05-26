@@ -6,10 +6,8 @@ function parse_body($element): string
     switch ($name) {
         case "Separator":
             return parse_separator();
-        case "CallToActionMiddle":
-            return parse_cta_middle($element);
-        case "CallToActionLeft":
-            return parse_cta_left($element);
+        case "CallToAction": //todo check new name
+            return parse_cta($element);
         case "Image Text":
             return parse_image_text($element);
     }
@@ -21,18 +19,17 @@ function parse_separator(): string
     return file_get_contents(body_dir . "/Divider.html");
 }
 
-function parse_cta_middle($element): string
+function parse_cta($element): string
 {
-    return str_replace(["%title", "%content", "%button1text", "%button2text", "#1", "#2"],
-        [$element["Title"], $element["Text"], $element["ButtonText"], "TODO", $element["ButtonUrl"], "#"],
-        file_get_contents(body_dir . "/CallToActionMiddle.html"));
-}
+    $file_types = array("Left" => "/CallToActionLeft.html", "Middle" => "/CallToActionMiddle.html",
+        "Right" => "/CallToActionRight.html");
+    if (isset($file_types[$element["Orientation"]])) {
+        $file = $file_types[$element["Orientation"]];
+    } else die(array("error" => "Unrecognised value for orientation '${$element["Orientation"]}'"));
 
-function parse_cta_left($element): string
-{
-    return str_replace(["%title", "%content", "%buttonText", "#1"],
-        [$element["Title"], $element["Text"], $element["ButtonText"], $element["ButtonUrl"]],
-        file_get_contents(body_dir . "/CallToActionLeft.html"));
+    return str_replace(["%title", "%content", "%buttonText", "%buttonLink"],
+        [$element["Title"] ?? "", $element["Text"] ?? "", $element["ButtonText"] ?? "", $element["ButtonUrl"] ?? "#"],
+        file_get_contents(body_dir . $file));
 }
 
 function parse_image_text($element): string
