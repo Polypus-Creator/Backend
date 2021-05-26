@@ -1,12 +1,15 @@
 <?php
+require_once('header_parser.php');
 
-function parse_body($element): string
+function parse_element($element): string
 {
     $name = $element["Elemento"];
     switch ($name) {
+        case "Logo&ItemsNav":
+            return parse_header_items($element);
         case "Separator":
             return parse_separator();
-        case "CallToAction": //todo check new name
+        case "CallToActionMiddle": //todo check new name
             return parse_cta($element);
         case "Image Text":
             return parse_image_text($element);
@@ -16,13 +19,13 @@ function parse_body($element): string
 
 function parse_separator(): string
 {
-    return file_get_contents(body_dir . "/Divider.html");
+    return file_get_contents(body_dir . "Divider.html");
 }
 
 function parse_cta($element): string
 {
-    $file_types = array("Left" => "/CallToActionLeft.html", "Middle" => "/CallToActionMiddle.html",
-        "Right" => "/CallToActionRight.html");
+    $file_types = array("Left" => "CallToActionLeft.html", "Middle" => "CallToActionMiddle.html",
+        "Right" => "CallToActionRight.html");
     if (isset($file_types[$element["Orientation"]])) {
         $file = $file_types[$element["Orientation"]];
     } else die(array("error" => "Unrecognised value for orientation '${$element["Orientation"]}'"));
@@ -37,5 +40,5 @@ function parse_image_text($element): string
     $file = $element["Orientaton"] === "Left" ? "ImageAndTextLeft.html" : "ImageAndTextRight.html";
     return str_replace(["%title", "%content", "%imageUrl"],
         [$element["Title"], $element["Text"], $element["Image"]],
-        file_get_contents(body_dir . "/$file"));
+        file_get_contents(body_dir . $file));
 }

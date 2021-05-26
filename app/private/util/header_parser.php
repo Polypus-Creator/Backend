@@ -1,9 +1,8 @@
 <?php
-function parse_header($element, $header_dir): string
+function parse_header_items($element): string
 {
-    $element_name = $element["Elemento"];
     //separate the file into parts to iterate and repeat chunks
-    $parts = explode("<!--end-->", file_get_contents($header_dir . "/" . $element_name));
+    $parts = explode("<!--end-->", file_get_contents(header_dir . "Logo&ItemsNav.html"));
 
     $result = str_replace("logo.png", $element["LogoUrl"], $parts[0]);
     $result = str_replace("title", $element["WebName"], $result);
