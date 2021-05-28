@@ -25,6 +25,8 @@ class ElementParser
                 return $this->parse_image_text($element);
             case "Footer": //todo check name
                 return $this->parse_footer($element);
+            case "Image":
+                return $this->parse_images($element);
         }
         return "";
     }
@@ -60,5 +62,20 @@ class ElementParser
         return str_replace("%footerText",
             $element["Text"],
             file_get_contents(footer_dir . "SimpleFooter.html"));
+    }
+
+    private function parse_images($element): string
+    {
+        $length = sizeof($element["RutasImages"]);
+        if ($length == 0) return "";
+        elseif ($length == 1) $file = "Image.html";
+        elseif ($length == 2) $file = "2Images.html";
+        else                  $file = "3Images.html";
+
+        $result = file_get_contents(body_dir . $file);
+        for ($i = 0; $i < $length; $i++) {
+            $result = str_replace("%photo" . ($i + 1), $element["RutasImages"][$i], $result);
+        }
+        return $result;
     }
 }
