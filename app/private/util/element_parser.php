@@ -29,6 +29,8 @@ class ElementParser
                 return $this->parse_images($element);
             case "Title":
                 return $this->parse_title($element);
+            case "Text":
+                return $this->parse_text($element);
         }
         return "";
     }
@@ -85,5 +87,11 @@ class ElementParser
     {
         $file = "TitleCenter.html";
         return str_replace("%text", $element["VTitle"], file_get_contents(body_dir . $file));
+    }
+
+    private function parse_text($element): string
+    {
+        $file = "TextCenter.html";
+        return str_replace("%text", $element["VText"], file_get_contents(body_dir . $file));
     }
 }
