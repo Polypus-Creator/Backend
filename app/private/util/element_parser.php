@@ -27,6 +27,8 @@ class ElementParser
                 return $this->parse_footer($element);
             case "Image":
                 return $this->parse_images($element);
+            case "Title":
+                return $this->parse_title($element);
         }
         return "";
     }
@@ -77,5 +79,11 @@ class ElementParser
             $result = str_replace("%photo" . ($i + 1), $element["RutasImages"][$i], $result);
         }
         return $result;
+    }
+
+    private function parse_title($element): string
+    {
+        $file = "TitleCenter.html";
+        return str_replace("%text", $element["VTitle"], file_get_contents(body_dir . $file));
     }
 }
