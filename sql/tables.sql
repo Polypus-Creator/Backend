@@ -44,6 +44,7 @@ create table webs
     description    text,
     category       text,
     primary_colour text,
+    secondary_colour text,
     font           text,
     data           json
 );

@@ -24,6 +24,11 @@ $stmt = pg_prepare($database, "insert_user_$username",
     "insert into users (username, password) VALUES ($1 , $2)");
 $result = pg_execute($database, "insert_user_$username", array($username, $password_hash));
 
+$stmt = pg_prepare($database, "insert_user_website_$username",
+    "insert into webs (user_id) VALUES ((select id from users where username = $1))");
+$result = pg_execute($database, "insert_user_website_$username", array($username));
+
+
 if ($result) {
     echo json_encode(array("error" => false, "body" => "Success!"));
 } else {
