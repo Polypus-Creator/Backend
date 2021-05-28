@@ -10,7 +10,6 @@ class ElementParser
         $this->details = $details;
     }
 
-
     function parse_element($element): string
     {
         $name = $element["Elemento"];
@@ -31,6 +30,8 @@ class ElementParser
                 return $this->parse_title($element);
             case "Text":
                 return $this->parse_text($element);
+            case "Mapa":
+                return $this->parse_map($element);
         }
         return "";
     }
@@ -93,5 +94,18 @@ class ElementParser
     {
         $file = "TextCenter.html";
         return str_replace("%text", $element["VText"], file_get_contents(body_dir . $file));
+    }
+
+    private function parse_map($element): string
+    {
+        //todo add class=map to the iframe
+        return str_replace(array("<!--iframe-->", "%title", "%mail", "%phone", "%schedule", "%website"),
+            array($element["Iframe"],
+                $element["Title"],
+                $element["Correo"],
+                $element["Phone"],
+                $element["Hora"],
+                $element["Web"]),
+            file_get_contents(body_dir . "ContactUs.html"));
     }
 }
