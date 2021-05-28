@@ -12,4 +12,4 @@ pg_prepare($database, "query_token_$token",
     'select id, username, password, create_date from users where token = $1');
 $result = pg_execute($database, "query_token_$token", array($token));
 if (pg_num_rows($result) == 0) die(json_encode(array("error" => "Incorrect token")));
-$user = pg_fetch_row($result);
+$user = pg_fetch_assoc($result);
