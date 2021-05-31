@@ -46,4 +46,5 @@ if (lum_diff_hex($details["primary_colour"], "#FFFFFF") < 5) {
     $html = str_replace("light-theme", "dark-theme", $html);
     $html = str_replace("navbar-light", "navbar-dark", $html);
 }
+
 echo $html;
