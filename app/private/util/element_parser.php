@@ -1,5 +1,4 @@
 <?php
-require_once('header_parser.php');
 
 class ElementParser
 {
@@ -14,16 +13,12 @@ class ElementParser
     {
         $name = $element["Elemento"];
         switch ($name) {
-            case "Logo&ItemsNav":
-                return parse_header_items($element, $this->details);
             case "Separator":
                 return $this->parse_separator();
             case "CallToAction":
                 return $this->parse_cta($element);
             case "Image Text":
                 return $this->parse_image_text($element);
-            case "Footer":
-                return $this->parse_footer($element);
             case "Image":
                 return $this->parse_images($element);
             case "Title":
@@ -60,13 +55,6 @@ class ElementParser
         return str_replace(["%title", "%content", "%imageUrl"],
             [$element["Title"], $element["Text"], $element["Image"]],
             file_get_contents(body_dir . $file));
-    }
-
-    private function parse_footer($element): string
-    {
-        return str_replace("%footerText",
-            $element["Text"],
-            file_get_contents(footer_dir . "SimpleFooter.html"));
     }
 
     private function parse_images($element): string

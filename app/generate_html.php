@@ -3,6 +3,7 @@ require_once('private/secure_endpoint.php');
 require_once('private/util/shell_parser.php');
 require_once('private/util/element_parser.php');
 require_once('private/util/util.php');
+require_once('private/util/header_footer_parser.php');
 
 const structure_dir = "private/blocks/structure/";
 const body_dir = "private/blocks/body/";
@@ -24,11 +25,16 @@ $elements = $_GET["ListaJSON"];
 //add first element of HTML
 $html = parse_top_shell($web_name);
 $parser = new ElementParser($details);
+
+//parse header
+$html = $html . parse_header_items($_GET["Header"], $details);
 //parse each element
 foreach ($elements as $element) {
     $element_name = $element["Element"];
     $html = $html . $parser->parse_element($element);
 }
+//parse footer
+$html = $html . parse_footer($_GET["Footer"]);
 //add the body and html closing tags
 $html = $html . file_get_contents(structure_dir . "BottomStructure.html");
 
@@ -36,5 +42,6 @@ $html = $html . file_get_contents(structure_dir . "BottomStructure.html");
 //if the main colour is illegible with white, switch to dark theme
 if (lum_diff_hex($details["primary_colour"], "#FFFFFF") < 5) {
     $html = str_replace("light-theme", "dark-theme", $html);
+    $html = str_replace("navbar-light", "navbar-dark", $html);
 }
 echo $html;

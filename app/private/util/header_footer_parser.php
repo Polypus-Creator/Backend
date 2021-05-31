@@ -20,3 +20,10 @@ function parse_header_items($element, $details): string
     return $result . $parts[2];
 }
 
+function parse_footer($element): string
+{
+    return str_replace("%footerText",
+        $element["Text"],
+        file_get_contents(footer_dir . "SimpleFooter.html"));
+}
+
