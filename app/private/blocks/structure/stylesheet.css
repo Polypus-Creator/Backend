@@ -2,6 +2,51 @@
 /* STYLES MADE BY POLYPUS CREATOR APP */
 /**************************************/
 
+@import url('https://fonts.googleapis.com/css2?family=Karla:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Squada+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@350&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Yantramanav:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Abel&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Francois+One&display=swap');
+
+.font-arial {
+    font-family: arial;
+}
+
+.font-karla {
+    font-family: 'Karla', sans-serif;
+}
+
+.font-nunito {
+    font-family: 'Nunito', sans-serif;
+}
+
+.font-squada {
+    font-family: 'Squada One', cursive;
+}
+
+.font-source {
+    font-family: 'Source Serif Pro', serif;;
+}
+
+.font-yantramanav {
+    font-family: 'Yantramanav', sans-serif;
+}
+
+.font-abel {
+    font-family: 'Abel', sans-serif;
+}
+
+.font-francois {
+    font-family: 'Francois One', sans-serif;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+
 /**************************************/
 /* DESKTOP							  */
 /**************************************/
@@ -237,14 +282,15 @@
     background-color: transparent;
     margin-top: 0px;
     margin-bottom: 0px;
+    padding: 0px;
 
 }
 
 #dark-theme-title {
     background-color: transparent;
-    margin-top: -50px;
-    margin-bottom: -50px;
+    margin-bottom: 20px;
     color: white;
+    padding: 0px;
 }
 
 
@@ -252,7 +298,7 @@
 
 .theme-price-cards {
     text-align: center;
-    margin-left: 11%;
+    margin-left: 13%;
     margin-right: 5%;
     margin-bottom: 4%;
 }
@@ -262,13 +308,13 @@
 }
 
 #card-header-two {
-    background-color: #main2;
+    background-color: #BDC0C1;
     color: white;
     font-weight: bold;
 }
 
 #card-header-three {
-    background-color: #main3;
+    background-color: #6D6D6D;
     color: white;
     font-weight: bold;
 }
@@ -283,9 +329,10 @@
 
 .light-theme-tripleInfo {
     font-size: 30px;
-    margin-bottom: 60px;
+    margin-bottom: 35px;
     margin-top: 2%;
     text-align: center;
+    margin-left: -4%;
 }
 
 #light-theme-left-element-tripleInfo {
@@ -298,7 +345,7 @@
 
 .dark-theme-tripleInfo {
     font-size: 30px;
-    margin-bottom: 60px;
+    margin-bottom: 35px;
     margin-top: 2%;
     text-align: center;
     color: white;
@@ -312,6 +359,22 @@
     border-left: 1px solid white;
 }
 
+/* SIMPLE CARD */
+
+#theme-simple_card {
+    text-align: center;
+    display: block;
+    background-color: transparent;
+    margin: 0 auto;
+    margin-left: 22%;
+}
+
+#theme-simple_card #box {
+    background-color: #AAAAAA;
+    padding: 5%;
+    max-width: 850px;
+    color: white;
+}
 
 /* GLOBAL CLASS */
 
@@ -337,7 +400,7 @@
 
 .separator {
     height: 10px;
-    background-color: #main1;
+    background-color: #0074C5;
 }
 
 .container {
@@ -363,7 +426,8 @@
     background-color: transparent;
     margin-top: 20px;
     margin-bottom: -25px;
-    padding: 10%;
+    padding: 6%;
+    padding-top: 0px;
 }
 
 #light-theme-text p {
@@ -374,11 +438,38 @@
     background-color: #1d1b24;
     margin-top: -50px;
     margin-bottom: -25px;
-    padding: 10%;
+    padding: 6%;
+    padding-top: 30px;
 }
 
 #dark-theme-text p {
     font-size: 18px;
+    color: white;
+}
+
+/* MAP */
+
+.map {
+    width: 600px;
+    height: 500px;
+    margin-left: 10%;
+    margin-bottom: 15px;
+}
+
+.light-theme-contactUs {
+    padding: 5px;
+    font-size: 20px;
+    margin-left: 4%;
+    margin-top: 17%;
+    text-align: left;
+}
+
+.dark-theme-contactUs {
+    padding: 5px;
+    font-size: 20px;
+    margin-left: 4%;
+    margin-top: 17%;
+    text-align: left;
     color: white;
 }
 
@@ -560,8 +651,13 @@
 
     }
 
+    #light-theme-title h1 {
+        margin-bottom: 20px;
+    }
+
     #dark-theme-title h1 {
         margin-left: 6%;
+        margin-bottom: 5px;
 
     }
 
@@ -579,7 +675,7 @@
 
     .light-theme-tripleInfo {
         font-size: 25px;
-        margin-bottom: 5%;
+        margin-bottom: 35px;
         margin-top: 5%;
         text-align: center;
     }
@@ -607,4 +703,53 @@
         border-left: none;
         margin-top: 30px;
     }
+
+    #theme-simple_card {
+        margin-left: 0px;
+    }
+
+    #theme-simple_card #box {
+        background-color: #AAAAAA;
+        padding: 5%;
+        color: white;
+        font-size: 0.95em;
+        max-width: none;
+    }
+
+    #light-theme-callToAction h1 {
+        font-size: 50px;
+    }
+
+    #dark-theme-callToAction h1 {
+        font-size: 50px;
+    }
+
+    .map {
+        width: 135%;
+        height: 500px;
+        margin-left: -30%;
+        margin-bottom: 15px;
+    }
+
+    .light-theme-contactUs {
+        padding: 5px;
+        font-size: 20px;
+        margin-left: -30%;
+        margin-top: -10%;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .dark-theme-contactUs {
+        padding: 5px;
+        font-size: 20px;
+        margin-left: -30%;
+        margin-top: -10%;
+        text-align: center;
+        margin-bottom: 20px;
+        color: white;
+    }
+
+
+    /* END OF MOBILE */
 }
