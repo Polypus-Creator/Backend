@@ -20,10 +20,9 @@ $result = pg_execute($database, $stmt_name, array($user["id"]));
 if (pg_num_rows($result) == 0) die(json_encode(array("error" => "Website not found")));
 $details = pg_fetch_assoc($result);
 
-$web_name = $_GET["WebName"];
 $elements = $_GET["ListaJSON"];
 //add first element of HTML
-$html = parse_top_shell($web_name);
+$html = parse_top_shell($details);
 $parser = new ElementParser($details);
 $hf_parser = new HeaderFooterParser($details);
 
