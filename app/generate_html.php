@@ -47,4 +47,9 @@ if (lum_diff_hex($details["primary_colour"], "#FFFFFF") < 5) {
     $html = str_replace("navbar-light", "navbar-dark", $html);
 }
 
-echo $html;
+$css = file_get_contents(structure_dir . "stylesheet.css");
+
+//echo $html;
+echo str_replace(array("#primary", "#secondary"),
+    array($details["primary_colour"], $details["secondary_colour"]),
+    $css);

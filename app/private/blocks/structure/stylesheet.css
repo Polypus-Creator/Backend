@@ -27,7 +27,7 @@
 }
 
 .font-source {
-    font-family: 'Source Serif Pro', serif;;
+    font-family: 'Source Serif Pro', serif;
 }
 
 .font-yantramanav {
@@ -65,11 +65,11 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: linear-gradient(13deg, #d3edff 14%, #d3edff 85%);
+    background: linear-gradient(13deg, #secondary 14%, #secondary 85%);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(13deg, #D3EDFF 14%, #d3edff 64%);
+    background: linear-gradient(13deg, #secondary 14%, #secondary 64%);
 }
 
 ::-webkit-scrollbar-track {
@@ -82,7 +82,7 @@ body {
 /* NAV BAR */
 
 #light-theme-navbar {
-    background-color: #D3EDFF;
+    background-color: #primary;
     width: 100%;
 }
 
@@ -99,7 +99,7 @@ body {
 }
 
 #dark-theme-navbar {
-    background-color: #005C9B;
+    background-color: #primary;
     width: 100%;
 }
 
@@ -400,7 +400,7 @@ body {
 
 .separator {
     height: 10px;
-    background-color: #0074C5;
+    background-color: #primary;
 }
 
 .container {
@@ -412,7 +412,7 @@ body {
 #light-theme-footerCopy {
     height: 50px;
     margin-bottom: 0px;
-    background-color: #D3EDFF;
+    background-color: #secondary;
 }
 
 #dark-theme-footerCopy {
