@@ -18,11 +18,11 @@ class ElementParser
                 return parse_header_items($element, $this->details);
             case "Separator":
                 return $this->parse_separator();
-            case "CallToActionMiddle": //todo check new name
+            case "CallToAction":
                 return $this->parse_cta($element);
             case "Image Text":
                 return $this->parse_image_text($element);
-            case "Footer": //todo check name
+            case "Footer":
                 return $this->parse_footer($element);
             case "Image":
                 return $this->parse_images($element);
