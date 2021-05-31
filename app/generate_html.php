@@ -25,16 +25,19 @@ $elements = $_GET["ListaJSON"];
 //add first element of HTML
 $html = parse_top_shell($web_name);
 $parser = new ElementParser($details);
+$hf_parser = new HeaderFooterParser($details);
 
 //parse header
-$html = $html . parse_header_items($_GET["Header"], $details);
+$html = $html . $hf_parser->parse_header($_GET["Header"]);
+
 //parse each element
 foreach ($elements as $element) {
     $element_name = $element["Element"];
     $html = $html . $parser->parse_element($element);
 }
+
 //parse footer
-$html = $html . parse_footer($_GET["Footer"]);
+$html = $html . $hf_parser->parse_footer($_GET["Footer"]);
 //add the body and html closing tags
 $html = $html . file_get_contents(structure_dir . "BottomStructure.html");
 
