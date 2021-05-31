@@ -53,7 +53,7 @@ class ElementParser
     {
         $file = $element["Orientaton"] === "Left" ? "ImageAndTextLeft.html" : "ImageAndTextRight.html";
         return str_replace(["%title", "%content", "%imageUrl"],
-            [$element["Title"], $element["Text"], $element["Image"]],
+            [$element["Title"], $element["Text"], "Images" . $element["Image"]],
             file_get_contents(body_dir . $file));
     }
 
@@ -67,7 +67,9 @@ class ElementParser
 
         $result = file_get_contents(body_dir . $file);
         for ($i = 0; $i < $length; $i++) {
-            $result = str_replace("%photo" . ($i + 1), $element["RutasImages"][$i], $result);
+            $result = str_replace("%photo" . ($i + 1),
+                "Images" . $element["RutasImages"][$i],
+                $result);
         }
         return $result;
     }

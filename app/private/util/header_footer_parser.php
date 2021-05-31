@@ -4,7 +4,7 @@ function parse_header_items($element, $details): string
     //separate the file into parts to iterate and repeat chunks
     $parts = explode("<!--end-->", file_get_contents(header_dir . "Logo&ItemsNav.html"));
 
-    $result = str_replace("logo.png", $element["LogoUrl"], $parts[0]);
+    $result = str_replace("logo.png", "Images" . $element["LogoUrl"], $parts[0]);
     $result = str_replace("title", $details["website_name"], $result);
     $first = true;
     foreach ($element["NavItems"] as $item) {
