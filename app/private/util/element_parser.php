@@ -98,8 +98,12 @@ class ElementParser
 
     private function parse_map($element): string
     {
-        //todo add class=map to the iframe
-        return str_replace(array("<!--iframe-->", "%title", "%mail", "%phone", "%schedule", "%website"),
+        $result = str_replace(array("<!--iframe-->",
+            "%title",
+            "%mail",
+            "%phone",
+            "%schedule",
+            "%website"),
             array($element["Iframe"],
                 $element["Title"],
                 $element["Correo"],
@@ -107,5 +111,6 @@ class ElementParser
                 $element["Hora"],
                 $element["Web"]),
             file_get_contents(body_dir . "ContactUs.html"));
+        return str_replace(array("<iframe"), array("<iframe class=\"map\""), $result);
     }
 }
