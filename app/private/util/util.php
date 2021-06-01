@@ -30,3 +30,27 @@ function lum_diff_hex(string $h1, string $h2): float
         hexdec($h2[2]),
     );
 }
+
+
+/**
+ * @param string $hex
+ * @param int $darker
+ * @return string a hex
+ * @link https://coderwall.com/p/dvecdg/darken-hex-color-in-php
+ */
+function darken_color(string $hex, int $darker=2): string
+{
+
+    $hash = (strpos($hex, '#') !== false) ? '#' : '';
+    $hex = (strlen($hex) == 7) ? str_replace('#', '', $hex) : ((strlen($hex) == 6) ? $hex : false);
+    if(strlen($hex) != 6) return $hash.'000000';
+    $darker = ($darker > 1) ? $darker : 1;
+
+    list($R16,$G16,$B16) = str_split($hex,2);
+
+    $R = sprintf("%02X", floor(hexdec($R16)/$darker));
+    $G = sprintf("%02X", floor(hexdec($G16)/$darker));
+    $B = sprintf("%02X", floor(hexdec($B16)/$darker));
+
+    return $hash.$R.$G.$B;
+}

@@ -27,6 +27,8 @@ class ElementParser
                 return $this->parse_text($element);
             case "Mapa":
                 return $this->parse_map($element);
+            case "Price Card":
+                return $this->parse_cards($element);
         }
         return "";
     }
@@ -102,5 +104,36 @@ class ElementParser
                 $element["Web"]),
             file_get_contents(body_dir . "ContactUs.html"));
         return str_replace(array("<iframe"), array("<iframe class=\"map\""), $result);
+    }
+
+    private function parse_cards($element): string
+    {
+        $numbers = ["one", "two", "three"];
+        //the block has 3 parts: top, each card, bottom
+        $parts = explode("<!--card-->", file_get_contents(body_dir . "3PriceCards.html"));
+        $result = $parts[0];
+        //for each card in the json
+        for ($i = 0; $i < sizeof($element["Contenido"]); $i++) {
+            $card_json = $element["Contenido"][$i];
+            //each card has 3 parts: top, each advantage, bottom
+            $card_parts = explode("<!--adv-->", $parts[1]);
+            $advantages = explode("\r\n", $card_json[3]); //todo check separator
+            $card = str_replace(
+                ["%cardNumber", "%plan", "%price", "%currency"],
+                [
+                    $numbers[$i] ?? $numbers[sizeof($numbers) - 1], //used to style the background colour
+                    $card_json[0], //free
+                    $card_json[1], //0
+                    $card_json[2]  //€
+                ],
+                $card_parts[0]); //replace on this
+
+            foreach ($advantages as $advantage) {
+                $card = $card . str_replace("%advantage", $advantage, $card_parts[1]);
+            }
+            $card = $card . $card_parts[2];
+            $result = $result . $card;
+        }
+        return $result . $parts[2];
     }
 }

@@ -305,16 +305,17 @@ body {
 
 #card-header-one {
     font-weight: bold;
+    background-color: #E5E5E5;
 }
 
 #card-header-two {
-    background-color: #BDC0C1;
+    background-color: #primary;
     color: white;
     font-weight: bold;
 }
 
 #card-header-three {
-    background-color: #6D6D6D;
+    background-color: #prim2;
     color: white;
     font-weight: bold;
 }
