@@ -84,8 +84,19 @@ class ElementParser
 
     private function parse_text($element): string
     {
-        $file = "TextCenter.html";
-        return str_replace("%text", $element["VText"], file_get_contents(body_dir . $file));
+        $columns = [$element["VText1"], $element["VText2"], $element["VText3"]];
+        //if all columns are empty, return "";
+        if (empty(array_filter($columns, function ($a) {
+            return $a !== null;
+        }))) return "";
+        $parts = explode("<!--end-->", file_get_contents(body_dir . "TextCenter.html"));
+        $result = $parts[0];
+        foreach ($columns as $text) {
+            if ($text != null) {
+                $result = $result . str_replace("%text", $text, $parts[1]);
+            }
+        }
+        return $result . $parts[2];
     }
 
     private function parse_map($element): string
