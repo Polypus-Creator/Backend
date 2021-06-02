@@ -32,9 +32,45 @@ class HeaderFooterParser
 
     function parse_footer($element): string
     {
+        switch ($element["Elemento"]) {
+            case "SimpleFooter":
+                return $this->parse_simple_footer($element);
+            case "ComplexFooter":
+                return $this->parse_complex_footer($element);
+        }
+        return "";
+    }
+
+    private function parse_simple_footer($element): string
+    {
         return str_replace("%footerText",
             $element["Text"],
             file_get_contents(footer_dir . "SimpleFooter.html"));
     }
-}
 
+    public function parse_complex_footer($element): string
+    {
+        $parts = explode("<!--end-->", file_get_contents(footer_dir . "ComplexFooter.html"));
+        $result = str_replace(["%title", "%email", "%phone", "%schedule", "%website"],
+            [
+                $element["Title"],
+                $element["Correo"],
+                $element["Telefono"],
+                $element["Horari"],
+                $element["Web"],
+            ],
+            $parts[0]);
+        $media = [
+            $element["LinkTw"],
+            $element["LinkLk"],
+            $element["LinkIn"],
+            $element["LinkFb"],
+        ];
+        for ($i = 0; $i < sizeof($media); $i++) {
+            if ($media[$i] != null) {
+                $result = $result . str_replace("%link", $media[$i], $parts[$i + 1]);
+            }
+        }
+        return $result . $parts[sizeof($parts) - 1];
+    }
+}

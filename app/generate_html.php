@@ -49,6 +49,6 @@ if (lum_diff_hex($details["primary_colour"], "#000000") < 5) {
 
 $css = file_get_contents(structure_dir . "stylesheet.css");
 
-//echo $html;
 $prim2 = darken_color($details["primary_colour"], 2);
-echo str_replace(["#primary", "#secondary", "#prim2"], [$details["primary_colour"], $details["secondary_colour"], $prim2], $css);
+echo $html;
+//echo str_replace(["#primary", "#secondary", "#prim2"], [$details["primary_colour"], $details["secondary_colour"], $prim2], $css);
