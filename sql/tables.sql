@@ -35,18 +35,18 @@ execute procedure update_last_login();
 
 create table webs
 (
-    id             serial not null,
-    user_id        int    not null
+    id               serial not null,
+    user_id          int    not null
         constraint webs_users_id_fk
             references users
             on update cascade on delete cascade,
-    website_name   text,
-    description    text,
-    category       text,
-    primary_colour text,
+    website_name     text,
+    description      text,
+    category         text,
+    primary_colour   text,
     secondary_colour text,
-    font           text,
-    data           json
+    font             text,
+    data             json
 );
 
 create table tickets
@@ -60,8 +60,9 @@ create table tickets
             on update cascade on delete set null,
     title       text,
     description text,
-    resolved    bool default false,
-    urgent      bool default false
+    resolved    bool      default false,
+    urgent      bool      default false,
+    created     timestamp default current_timestamp
 );
 
 create index token_index

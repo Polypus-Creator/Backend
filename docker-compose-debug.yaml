@@ -3,7 +3,7 @@ services:
   webserver:
     build:
       context: ./
-      dockerfile: ./debug.dockerfile
+      dockerfile: webserver-debug.dockerfile
     depends_on:
       - db
     ports:
