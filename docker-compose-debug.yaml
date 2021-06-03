@@ -15,7 +15,9 @@ services:
     env_file:
       - database.env
   db:
-    image: postgres
+    build:
+      context: ./
+      dockerfile: database.dockerfile
     env_file:
       - database.env
     ports:

@@ -1,0 +1,18 @@
+version: '2'
+services:
+  webserver:
+    build:
+      context: ./
+      dockerfile: webserver-prod.dockerfile
+    depends_on:
+      - db
+    ports:
+      - "80:80"
+    env_file:
+      - database.env
+  db:
+    build:
+      context: ./
+      dockerfile: database.dockerfile
+    env_file:
+      - database.env
