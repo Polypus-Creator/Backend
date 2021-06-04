@@ -3,8 +3,8 @@ require('private/database.php');
 include('private/endpoints.php');
 
 global $database;
-$username = $_GET["Username"];
-$password = $_GET["Password"];
+$username = $_POST["Username"];
+$password = $_POST["Password"];
 
 if (strlen($password) < 8) {
     http_response_code(400);
