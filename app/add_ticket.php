@@ -14,11 +14,12 @@ try {
     $stmt = pg_prepare($database, "insert_ticket_$id",
         "insert into tickets (user_id, title, description, urgent)
      VALUES ($1, $2, $3, $4)");
+    //todo
     $result = pg_execute($database, "insert_ticket_$id", [
         $id,
         $_GET["title"],
         $_GET["description"],
-        $_GET["urgent"] ?? false
+        $_GET["urgent"] ? "true" : "false"
     ]);
     echo json_encode(["error" => false, "body" => "success"]);
 } catch (Exception $e) {
