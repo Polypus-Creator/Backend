@@ -4,8 +4,8 @@ include_once('private/endpoints.php');
 require_once('private/util/generate_token.php');
 
 global $database;
-$username = $_POST['username'];
-$password = $_POST['password'];
+$username = $_POST['Username'];
+$password = $_POST['Password'];
 
 if ($username == null) die(json_encode(array("error" => "Please enter a username")));
 if ($password == null) die(json_encode(array("error" => "Please enter a password")));
