@@ -7,9 +7,9 @@
   </component>
   <component name="PhpInterpreters">
     <interpreters>
-      <interpreter id="3fcac095-871b-4ada-b3f5-bcfc0dbe4071" name="webserver" home="docker-compose://DATA" debugger_id="php.debugger.XDebug">
+      <interpreter id="eee09b75-7379-434d-a566-44fd929581af" name="webserver" home="docker-compose://DATA" debugger_id="php.debugger.XDebug">
         <remote_data INTERPRETER_PATH="php" HELPERS_PATH="/opt/.phpstorm_helpers" INITIALIZED="false" VALID="true" RUN_AS_ROOT_VIA_SUDO="false" DOCKER_ACCOUNT_NAME="Docker" DOCKER_COMPOSE_SERVICE_NAME="webserver" DOCKER_REMOTE_PROJECT_PATH="/opt/project">
-          <type_data command="EXEC" />
+          <type_data command="RUN" />
           <dockerComposeConfigurationPaths>
             <item value="$PROJECT_DIR$/docker-compose-debug.yaml" />
           </dockerComposeConfigurationPaths>
@@ -21,17 +21,13 @@
   <component name="PhpInterpretersPhpInfoCache">
     <phpInfoCache>
       <interpreter name="webserver">
-        <phpinfo binary_type="PHP" php_cli="/usr/local/bin/php" path_separator=":" version="7.3.27">
-          <additional_php_ini>/usr/local/etc/php/conf.d/docker-php-ext-mysqli.ini, /usr/local/etc/php/conf.d/docker-php-ext-sodium.ini, /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini</additional_php_ini>
-          <configuration_file>/usr/local/etc/php/php.ini</configuration_file>
+        <phpinfo binary_type="PHP" php_cli="/usr/local/bin/php" path_separator=":" version="7.4.11">
+          <additional_php_ini>/usr/local/etc/php/conf.d/docker-php-ext-pdo_pgsql.ini, /usr/local/etc/php/conf.d/docker-php-ext-pgsql.ini, /usr/local/etc/php/conf.d/docker-php-ext-sodium.ini</additional_php_ini>
+          <configuration_file />
           <configuration_options>
             <configuration_option name="include_path" value=".:/usr/local/lib/php" />
           </configuration_options>
-          <debuggers>
-            <debugger_info debugger="xdebug" debugger_version="2.7.0">
-              <debug_extensions />
-            </debugger_info>
-          </debuggers>
+          <debuggers />
           <loaded_extensions>
             <extension name="Core" />
             <extension name="PDO" />
@@ -51,11 +47,12 @@
             <extension name="json" />
             <extension name="libxml" />
             <extension name="mbstring" />
-            <extension name="mysqli" />
             <extension name="mysqlnd" />
             <extension name="openssl" />
             <extension name="pcre" />
+            <extension name="pdo_pgsql" />
             <extension name="pdo_sqlite" />
+            <extension name="pgsql" />
             <extension name="posix" />
             <extension name="readline" />
             <extension name="session" />
@@ -63,7 +60,6 @@
             <extension name="sqlite3" />
             <extension name="standard" />
             <extension name="tokenizer" />
-            <extension name="xdebug" />
             <extension name="xml" />
             <extension name="xmlreader" />
             <extension name="xmlwriter" />
