@@ -51,4 +51,4 @@ $css = file_get_contents(structure_dir . "stylesheet.css");
 $prim2 = darken_color($details["primary_colour"]);
 $css = str_replace(["#primary", "#secondary", "#prim2"], [$details["primary_colour"], $details["secondary_colour"], $prim2], $css);
 
-echo ["html" => $html, "css" => $css];
+echo json_encode(["html" => $html, "css" => $css]);
