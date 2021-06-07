@@ -40,7 +40,6 @@ $html = $html . $hf_parser->parse_footer($_GET["Footer"]);
 //add the body and html closing tags
 $html = $html . file_get_contents(structure_dir . "BottomStructure.html");
 
-//todo integration test with css
 //if the main colour is illegible with white, switch to dark theme
 if (lum_diff_hex($details["primary_colour"], "#000000") < 5) {
     $html = str_replace("light-theme", "dark-theme", $html);
@@ -50,5 +49,6 @@ if (lum_diff_hex($details["primary_colour"], "#000000") < 5) {
 $css = file_get_contents(structure_dir . "stylesheet.css");
 
 $prim2 = darken_color($details["primary_colour"]);
-echo $html;
-//echo str_replace(["#primary", "#secondary", "#prim2"], [$details["primary_colour"], $details["secondary_colour"], $prim2], $css);
+$css = str_replace(["#primary", "#secondary", "#prim2"], [$details["primary_colour"], $details["secondary_colour"], $prim2], $css);
+
+echo ["html" => $html, "css" => $css];
