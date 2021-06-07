@@ -40,11 +40,11 @@ class ElementParser
 
     private function parse_cta($element): string
     {
-        $file_types = array("Left" => "CallToActionLeft.html", "Middle" => "CallToActionMiddle.html",
-            "Right" => "CallToActionRight.html");
+        $file_types = ["Left" => "CallToActionLeft.html", "Middle" => "CallToActionMiddle.html",
+            "Right" => "CallToActionRight.html"];
         if (isset($file_types[$element["Orientation"]])) {
             $file = $file_types[$element["Orientation"]];
-        } else die(array("error" => "Unrecognised value for orientation '${$element["Orientation"]}'"));
+        } else die(["error" => "Unrecognised value for orientation '${$element["Orientation"]}'"]);
 
         return str_replace(["%title", "%content", "%buttonText", "%buttonLink"],
             [$element["Title"] ?? "", $element["Text"] ?? "", $element["ButtonText"] ?? "", $element["ButtonUrl"] ?? "#"],
@@ -101,20 +101,20 @@ class ElementParser
 
     private function parse_map($element): string
     {
-        $result = str_replace(array("<!--iframe-->",
+        $result = str_replace(["<!--iframe-->",
             "%title",
             "%mail",
             "%phone",
             "%schedule",
-            "%website"),
-            array($element["Iframe"],
+            "%website"],
+            [$element["Iframe"],
                 $element["Title"],
                 $element["Correo"],
                 $element["Phone"],
                 $element["Hora"],
-                $element["Web"]),
+                $element["Web"]],
             file_get_contents(body_dir . "ContactUs.html"));
-        return str_replace(array("<iframe"), array("<iframe class=\"map\""), $result);
+        return str_replace(["<iframe"], ["<iframe class=\"map\""], $result);
     }
 
     private function parse_cards($element): string

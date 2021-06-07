@@ -6,11 +6,11 @@ global $token;
 
 pg_prepare($database, "logout_user_$token",
     "update users set token = null where token = $1");
-$result = pg_execute($database, "logout_user_$token", array($token));
+$result = pg_execute($database, "logout_user_$token", [$token]);
 
 if (pg_affected_rows($result) == 0) {
     http_response_code(500);
-    die(json_encode(array("error" => "Unexpected error, please try again")));
+    die(json_encode(["error" => "Unexpected error, please try again"]));
 } else {
-    echo json_encode(array("error" => false, "body" => "Logged out"));
+    echo json_encode(["error" => false, "body" => "Logged out"]);
 }

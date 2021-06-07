@@ -16,7 +16,7 @@ $result = pg_execute($database, "query_user_$username", [$username]);
 
 if (pg_num_rows($result) > 0) {
     http_response_code(400);
-    die(json_encode(array("error" => "user already registered")));
+    die(json_encode(["error" => "user already registered"]));
 }
 
 $password_hash = password_hash($password, PASSWORD_DEFAULT);

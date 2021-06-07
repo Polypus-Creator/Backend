@@ -7,5 +7,5 @@ $database = pg_connect("host=$server dbname=$database_name user=$id password=$pa
 
 if (!$database) {
     http_response_code(500);
-    die(json_encode(array("error" => "cannot connect to database")));
+    die(json_encode(["error" => "cannot connect to database"]));
 }

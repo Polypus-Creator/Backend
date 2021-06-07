@@ -16,8 +16,8 @@ global $user;
 $stmt_name = "query_website_details_${$user["id"]}";
 pg_prepare($database, $stmt_name,
     'select * from webs where user_id = $1');
-$result = pg_execute($database, $stmt_name, array($user["id"]));
-if (pg_num_rows($result) == 0) die(json_encode(array("error" => "Website not found")));
+$result = pg_execute($database, $stmt_name, [$user["id"]]);
+if (pg_num_rows($result) == 0) die(json_encode(["error" => "Website not found"]));
 $details = pg_fetch_assoc($result);
 
 $elements = $_GET["ListaJSON"];
@@ -49,6 +49,6 @@ if (lum_diff_hex($details["primary_colour"], "#000000") < 5) {
 
 $css = file_get_contents(structure_dir . "stylesheet.css");
 
-$prim2 = darken_color($details["primary_colour"], 2);
+$prim2 = darken_color($details["primary_colour"]);
 echo $html;
 //echo str_replace(["#primary", "#secondary", "#prim2"], [$details["primary_colour"], $details["secondary_colour"], $prim2], $css);
