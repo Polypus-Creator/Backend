@@ -2,6 +2,7 @@ create table users
 (
     id                serial not null,
     username          text   not null unique,
+    email             text,
     password          text,
     create_date       timestamp default current_timestamp,
     token             text,
@@ -35,7 +36,9 @@ execute procedure update_last_login();
 
 create table webs
 (
-    id               serial not null,
+    id               serial not null
+        constraint webs_pk
+            primary key,
     user_id          int    not null
         constraint webs_users_id_fk
             references users
