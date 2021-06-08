@@ -135,6 +135,27 @@ body {
     margin-bottom: 0px;
 }
 
+#light-theme-button {
+    background-color: #primary;
+    color: black;
+    border: none;
+}
+
+#light-theme-button:hover {
+    background-color: #secondary;
+    color: #primary;
+}
+
+#dark-theme-button {
+    background-color: #primary;
+    color: white;
+}
+
+#dark-theme-button:hover {
+    background-color: #secondary;
+    color: #primary;
+}
+
 /* IMAGE AND TEXT */
 
 #light-theme-imageAndTextLeft {
@@ -593,15 +614,6 @@ body {
         text-align: center;
         color: white;
         margin-bottom: 2%;
-    }
-
-    #light-theme-button {
-        background-color: #primary;
-    }
-
-    #dark-theme-button {
-        background-color: #primary;
-        color: white;
     }
 
 
