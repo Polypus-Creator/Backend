@@ -12,29 +12,31 @@ if ($password == null) die(json_encode(["error" => "Please enter a password"]));
 
 try {
     pg_prepare($database, "query_user_$username",
-        'select id, username, password, create_date from users where username = $1');
+        'select id, username, password, email, create_date from users where username = $1');
     $result = pg_execute($database, "query_user_$username", [$username]);
     if (pg_num_rows($result) == 0) die(json_encode(["error" => "Incorrect credentials"]));
-    $user = pg_fetch_row($result);
+    $user = pg_fetch_assoc($result);
 
-    $token = generate_token();
-    pg_prepare($database, "update_token_$username", "update users set token = $1 where id = $2");
-    $code = pg_execute($database, "update_token_$username", [$token, $user[0]]);
-    if ($code === false) throw new ErrorException();
+    if (password_verify($password, $user["password"])) {
+        $token = generate_token();
+        pg_prepare($database, "update_token_$username", "update users set token = $1 where id = $2");
+        $code = pg_execute($database, "update_token_$username", [$token, $user["id"]]);
+        if ($code === false) {
+            http_response_code(500);
+            die(json_encode(["error" => "Unknown error occurred. Please try again"]));
+        }
 
-    if (password_verify($password, $user[2])) {
+        unset($user["password"]);
+        $user["token"] = $token;
         echo json_encode([
             "error" => false,
-            "body" => [
-                "id" => $user[0],
-                "username" => $user[1],
-                "create_date" => $user[3],
-                "token" => $token]]);
+            "body" => $user]);
     } else {
+        http_response_code(400);
         die(json_encode(['error' => 'Incorrect credentials']));
     }
 } catch (Exception $e) {
 
     http_response_code(500);
-    die(json_encode(['error' => 'Unknown error occurred. Please try again']));
+    die(json_encode(["error" => "Unknown error occurred. Please try again"]));
 }
