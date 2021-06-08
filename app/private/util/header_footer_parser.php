@@ -58,7 +58,7 @@ class HeaderFooterParser
                 $element["Telefono"],
                 $element["Horari"],
                 $element["Web"],
-                $element["LogoUrl"],
+                "Images" . $element["LogoUrl"],
             ],
             $parts[0]);
         $media = [
