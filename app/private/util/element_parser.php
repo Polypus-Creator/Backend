@@ -29,6 +29,8 @@ class ElementParser
                 return $this->parse_map($element);
             case "Price Card":
                 return $this->parse_cards($element);
+            case "Button":
+                return $this->parse_button($element);
         }
         return "";
     }
@@ -146,5 +148,13 @@ class ElementParser
             $result = $result . $card;
         }
         return $result . $parts[2];
+    }
+
+    private function parse_button($element): string
+    {
+        return str_replace(["%link", "%buttonText"],
+            [$element["Link"], $element["Text"],],
+            file_get_contents(body_dir . "SimpleButton.html")
+        );
     }
 }
