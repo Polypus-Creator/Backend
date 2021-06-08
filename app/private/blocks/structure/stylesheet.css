@@ -595,6 +595,15 @@ body {
         margin-bottom: 2%;
     }
 
+    #light-theme-button {
+        background-color: #primary;
+    }
+
+    #dark-theme-button {
+        background-color: #primary;
+        color: white;
+    }
+
 
     /* IMAGES */
     #light-theme-image {
