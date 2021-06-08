@@ -51,13 +51,14 @@ class HeaderFooterParser
     public function parse_complex_footer($element): string
     {
         $parts = explode("<!--end-->", file_get_contents(footer_dir . "ComplexFooter.html"));
-        $result = str_replace(["%title", "%email", "%phone", "%schedule", "%website"],
+        $result = str_replace(["%title", "%email", "%phone", "%schedule", "%website", "%logoUrl"],
             [
                 $element["Title"],
                 $element["Correo"],
                 $element["Telefono"],
                 $element["Horari"],
                 $element["Web"],
+                $element["LogoUrl"],
             ],
             $parts[0]);
         $media = [
