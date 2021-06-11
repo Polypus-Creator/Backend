@@ -5,7 +5,7 @@ global $database;
 
 //get token
 $headers = getallheaders();
-$token = str_replace("Bearer ", "", $headers["Authorization"]);
+$token = str_replace("Bearer ", "", $headers["Authorization"] . $headers["authorization"]);
 if ($token == "") die(json_encode(["error" => "Incorrect token"]));
 
 pg_prepare($database, "query_token_$token",
